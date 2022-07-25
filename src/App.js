@@ -10,42 +10,48 @@ const search_api =
 
 function App() {
   const [movies, setMovies] = useState([]);
-  const [searchTerm, setSearchTerm] =useState('')
+  const [searchTerm, setSearchTerm] = useState("");
 
-  const getMovies=(api)=>{
+  const getMovies = (api) => {
     fetch(api)
-    .then((res) => res.json())
-    .then((data) => {
-      setMovies(data.results);
-    });
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        setMovies(data.results);
+      });
+  };
   useEffect(() => {
-    getMovies(featured_api)
+    getMovies(featured_api);
   }, []);
 
-  const handleSubmit=(e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if(searchTerm){
-   getMovies(search_api+searchTerm)
-      setSearchTerm('')
+    if (searchTerm) {
+      getMovies(search_api + searchTerm);
+      setSearchTerm("");
     }
-  }
-  const handleChange=(e)=>{
-setSearchTerm(e.target.value)
-  }
+  };
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
   return (
-  <>
-       <header>
-         <form onSubmit={handleSubmit}>
-          <input type='search' className='search' value={searchTerm} onChange={handleChange} placeholder='Search...' />
-          </form>
-        </header>
+    <>
+      <header>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="search"
+            className="search"
+            value={searchTerm}
+            onChange={handleChange}
+            placeholder="Search..."
+          />
+        </form>
+      </header>
       <div className="movie-container">
-      {movies.map((movie) => (
-        <Movie key={movie.id} {...movie}/>
-      ))}
+        {movies.map((movie) => (
+          <Movie key={movie.id} {...movie} />
+        ))}
       </div>
-      </>
+    </>
   );
 }
 
