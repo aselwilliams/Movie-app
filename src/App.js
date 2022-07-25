@@ -10,23 +10,42 @@ const search_api =
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [searchTerm, setSearchTerm] =useState('')
 
+  const getMovies=(api)=>{
+    fetch(api)
+    .then((res) => res.json())
+    .then((data) => {
+      setMovies(data.results);
+    });
+  }
   useEffect(() => {
-    fetch(featured_api)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data)
-        setMovies(data.results);
-      });
+    getMovies(featured_api)
   }, []);
-  console.log(movies);
+
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    if(searchTerm){
+   getMovies(search_api+searchTerm)
+      setSearchTerm('')
+    }
+  }
+  const handleChange=(e)=>{
+setSearchTerm(e.target.value)
+  }
   return (
-  
+  <>
+       <header>
+         <form onSubmit={handleSubmit}>
+          <input type='search' className='search' value={searchTerm} onChange={handleChange} placeholder='Search...' />
+          </form>
+        </header>
       <div className="movie-container">
       {movies.map((movie) => (
         <Movie key={movie.id} {...movie}/>
       ))}
       </div>
+      </>
   );
 }
 
