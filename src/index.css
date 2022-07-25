@@ -47,6 +47,7 @@ header{
 }
 .movie-container{
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .movie-info{
@@ -76,4 +77,20 @@ header{
 }
 .movie:hover .movie-overview{
   transform: translateY(0%);
+}
+
+.tag{
+  background-color: #22254b;
+  border-radius: 5px;
+  font-weight: bold;
+  padding:0.5rem;
+}
+.tag.green{
+  color:rgb(46, 177, 46);
+}
+.tag.orange{
+  color:rgb(245, 179, 58);
+}
+.tag.red{
+  color:red;
 }
