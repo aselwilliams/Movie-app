@@ -13,7 +13,7 @@ if(vote>=8){
 const Movie=({title, poster_path, overview, vote_average})=>{
     return(
         <div className="movie">
-            <img src={img_api+poster_path} />
+            <img src={poster_path ? img_api+poster_path : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80'} />
             <div className="movie-info">
                 <h3>{title}</h3>
                 <span className={`tag ${setVoteClass(vote_average)}`}>{vote_average}</span>
