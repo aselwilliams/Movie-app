@@ -21,11 +21,12 @@ function App() {
   }, []);
   console.log(movies);
   return (
-    <div className="App">
+  
+      <div className="movie-container">
       {movies.map((movie) => (
-        <Movie />
+        <Movie key={movie.id} {...movie}/>
       ))}
-    </div>
+      </div>
   );
 }
 
